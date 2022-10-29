@@ -2,25 +2,31 @@
 AULA 3 - Herança, polimorfismos e composição
 3.1 - Extendendo classes
 3.2 - Sobrescrevendo métodos
+3.3 - Composição
+CONTEXTO: após o 3.2, pedir a construção da classe Arqueiro em um desafio
 PROBLEMA
-- Como fazer para modificar um método herdado?
+- Como ter uma classe que tenha caracteristicas de mais de uma classe? Ex: um arqueiro que usa arco e flecha mas com o elemento mágico fogo
 SOLUÇÃO
-- Sobreescrição do método obterInsignia herdado de Personagem em Mago
+- instancia a partir da classe Mago
+- instancia a partir da classe Arqueiro
+- modificar a propriedade do combate do arqueiro mágico, unindo informações de Mago e Arqueiro
 TEORIA
-- explicar polimorfismo
+- explicar composição
 */
 
-import { Mago } from "./modules/mago.js"
+import { ArqueiroMago } from "./modules/arqueiro-mago.js"
 
-const magoJack = new Mago('Jack', 7, 'fogo', 10, 10)
+//Valor esperado: Arqueiro iniciante e Mago iniciante
+console.log(new ArqueiroMago('Joaguim', 4, 4, 'fogo', 4, 4).obterInsignia())
 
-// Mostrar propriedades herdadas pelo Personagem e as novas criadas pelo Mago
-console.log(magoJack)
+//Valor esperado: Implacavel Arqueiro e Implacavel Mago
+console.log(new ArqueiroMago('Joaguim', 10, 4, 'fogo', 4, 10).obterInsignia())
 
-// Sobreescreveu o método obterInsignia. Valor esperado: Super Mago de fogo
-console.log(magoJack.obterInsignia())
+//Valor esperado: Implacavel Arqueiro e Mestre do fogo
+console.log(new ArqueiroMago('Joaguim', 10, 4, 'fogo', 5, 10).obterInsignia())
 
-const magoPotter = new Mago('Potter', 7, 'fogo', 3, 4)
+//Valor esperado: Dominador de flechas e Implacavel Mago
+console.log(new ArqueiroMago('Joaguim', 10, 6, 'fogo', 4, 10).obterInsignia())
 
-// Valor esperado: Implacavel Mago (aqui caiu na lógica que não sobreescreve)
-console.log(magoPotter.obterInsignia())
+//Valor esperado: Dominador de flechas e Mestre do fogo
+console.log(new ArqueiroMago('Joaguim', 10, 6, 'fogo', 5, 10).obterInsignia())
