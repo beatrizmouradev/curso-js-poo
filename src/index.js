@@ -1,52 +1,55 @@
 /*
 AULA 5 - Private e encapsulamento
-
 5.1 - Propriedades privadas
-PROBLEMA: O level está desprotegido, qualquer pessoa pode reatribuir qualquer valor por fora da classe que esta fora da regra de negocio. Como evitar isso?
+5.2 - Getters
+PROBLEMA: Como fazer para acessarmos #nivel por fora da classe ou em uma sub-classe (Guerreiro)?
 SOLUÇÃO:
-- Adicionei na sintaxe a #
-- Criação do set
+- Criar getter para #nivel (get level)
 TEORIA
-- Regra 1 - Não consegur ter acesso externo
-- Regra 2 - Necessidade de declarar a propriedade privada fora do construtor
-
-
-- Obs: Talvez esse video seja quebrado em 2 partes, a primeira "Propriedades privadas" e a segunda "Setter"
+- Getter
 */
 
 import { Arqueiro } from "./modules/arqueiro.js"
+import { Guerreiro } from "./modules/guerreiro.js"
 import { Mago } from "./modules/mago.js"
 import { Personagem } from "./modules/personagem.js"
 
-
 const arqueiroLess = new Arqueiro('Less', 3)
 
-//vai ser na pagina clicando nos botoes
-arqueiroLess.aumentarLevel() // level 2
-arqueiroLess.aumentarLevel() // level 3
-arqueiroLess.aumentarLevel() // level 4
-arqueiroLess.aumentarLevel() // level 5
-arqueiroLess.aumentarLevel() // level 6
-arqueiroLess.aumentarLevel() // level 7
-arqueiroLess.aumentarLevel() // level 8
-arqueiroLess.aumentarLevel() // level 9
-arqueiroLess.aumentarLevel() // level 10
-
 console.log('arqueiroLess ->', arqueiroLess)
 
-arqueiroLess.aumentarLevel() // level 11 - O set mantém o #nivel em 10
+// Agora funciona acessar o level (getter para #nivel) fora da classe
+console.log('arqueiroLess.level antes', arqueiroLess.level)
 
-console.log('arqueiroLess ->', arqueiroLess)
+arqueiroLess.aumentarLevel()
+arqueiroLess.aumentarLevel()
 
-// undefined pois level não é mais uma variável e sim uma chamada para set level (ou, uma função de escrita)
-console.log(arqueiroLess.level)
+console.log('arqueiroLess.level depois', arqueiroLess.level)
 
 const magoJhon = new Mago('Jhon', 'fogo', 3, 4);
 
-// Porque vai dar empate abaixo?
-// Porque ao tentar acessar personagem1.level ou personagem2.level irá retornar undefined
-// E undefined === undefined
+// Agora funciona verificar o vencedor porque Personagem.verificarVencedor consegue acessar level (getter para #nivel)
 console.log(Personagem.verificarVencedor(arqueiroLess, magoJhon))
 
-console.log(arqueiroLess.obterInsignia()) // Deveria vir Arqueiro Implacável, veio Arqueiro iniciante, por que? Video 5.2 (Getter)
+arqueiroLess.level = 999
 
+// Será que ele deixa aumentar para um level absurdo???????????? O.O
+console.log(arqueiroLess.level)
+
+
+//// Guerreiro
+
+/* Antes de criar o get level
+ * Por padrão o undefined cai na lógica do "else" em Personagem.obterInsignia()
+
+const guerreiroKarl = new Guerreiro('Karl', 7)
+guerreiroKarl.level = 8
+
+console.log(guerreiroKarl.obterInsignia()) // Esperado -> Guerreiro iniciante
+*/
+
+// Após criar o get level
+const guerreiroKarl = new Guerreiro('Karl', 7)
+guerreiroKarl.level = 8
+
+console.log(guerreiroKarl.obterInsignia()) // Esperado -> Guerreiro furioso
