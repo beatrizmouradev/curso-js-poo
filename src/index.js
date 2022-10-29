@@ -1,28 +1,23 @@
 /*
-AULA 2 - CONSTRUCTOR
-2.1 - Construtor por parâmetro
-
-2.2 - Propriedades fora dos parâmetros
+AULA 3 - Herança, polimorfismos e composição
+3.1 - Extendendo classes
 PROBLEMA
-- E quando existem valores de determinadas propriedades que eu quero já definir no construtor e não pedir por parâmetro na hora de instanciar a classe?
+- Como fazer com que uma classe tenha propriedades de outra classe além das propriedades específicas dela?
 SOLUÇÃO
-- aplico o this nas propriedades que não são pedidas por parâmetro
-- atribuo um valor
-- verifico novamente o objeto no console
+- criar a classe Mago
+- usar extends
+- usar super
+- instanciar um novo Mago
 TEORIA
-- Construtor sem parâmetro
+- extends e super
 */
 
-import { Personagem } from "./modules/personagem.js"
+import { Mago } from "./modules/mago.js"
 
-const personagemJack = new Personagem('Jack', 8, 'Mago')
+const magoJack = new Mago('Jack', 7, 'fogo', 10, 10)
 
-const personagemJhey = new Personagem('Jhey', 4, 'Arqueiro')
+// Mostrar propriedades herdadas pelo Personagem e as novas criadas pelo Mago
+console.log(magoJack)
 
-const personagemLess = new Personagem('Less', 3, 'Guerreiro')
-
-console.log(personagemJack)
-
-console.log(personagemJhey)
-
-console.log(personagemLess)
+//herdou o metodo tambem
+console.log(magoJack.obterInsignia())
