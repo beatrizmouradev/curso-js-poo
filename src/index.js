@@ -1,23 +1,52 @@
 /*
-AULA 4 - Static
-4.1 - Propriedades estáticas
-4.2 - Métodos estáticos
-PROBLEMA
-- Como lidar com métodos que recebem dados que não dependendem do contexto do this?
-SOLUÇÃO
-- Criar um método estático na classe Personagem
-- Utilizar esse método em uma subclasse para um outro contexto
+AULA 5 - Private e encapsulamento
+
+5.1 - Propriedades privadas
+PROBLEMA: O level está desprotegido, qualquer pessoa pode reatribuir qualquer valor por fora da classe que esta fora da regra de negocio. Como evitar isso?
+SOLUÇÃO:
+- Adicionei na sintaxe a #
+- Criação do set
 TEORIA
-- Como definir uma método estatico
-- O que são metodos utilitarios
-- Como ela pode e como não pode ser chamada no console
-- Quando utilizar
+- Regra 1 - Não consegur ter acesso externo
+- Regra 2 - Necessidade de declarar a propriedade privada fora do construtor
+
+
+- Obs: Talvez esse video seja quebrado em 2 partes, a primeira "Propriedades privadas" e a segunda "Setter"
 */
 
-import { Personagem } from "./modules/personagem.js"
+import { Arqueiro } from "./modules/arqueiro.js"
 import { Mago } from "./modules/mago.js"
+import { Personagem } from "./modules/personagem.js"
 
-const magoJack = new Mago('Jack', 10, 'fogo', 10, 10)
-const magoPotter = new Mago('Potter', 9, 'fogo', 9, 4)
 
-console.log(Personagem.verificarVencedor(magoJack, magoPotter))
+const arqueiroLess = new Arqueiro('Less', 3)
+
+//vai ser na pagina clicando nos botoes
+arqueiroLess.aumentarLevel() // level 2
+arqueiroLess.aumentarLevel() // level 3
+arqueiroLess.aumentarLevel() // level 4
+arqueiroLess.aumentarLevel() // level 5
+arqueiroLess.aumentarLevel() // level 6
+arqueiroLess.aumentarLevel() // level 7
+arqueiroLess.aumentarLevel() // level 8
+arqueiroLess.aumentarLevel() // level 9
+arqueiroLess.aumentarLevel() // level 10
+
+console.log('arqueiroLess ->', arqueiroLess)
+
+arqueiroLess.aumentarLevel() // level 11 - O set mantém o #nivel em 10
+
+console.log('arqueiroLess ->', arqueiroLess)
+
+// undefined pois level não é mais uma variável e sim uma chamada para set level (ou, uma função de escrita)
+console.log(arqueiroLess.level)
+
+const magoJhon = new Mago('Jhon', 'fogo', 3, 4);
+
+// Porque vai dar empate abaixo?
+// Porque ao tentar acessar personagem1.level ou personagem2.level irá retornar undefined
+// E undefined === undefined
+console.log(Personagem.verificarVencedor(arqueiroLess, magoJhon))
+
+console.log(arqueiroLess.obterInsignia()) // Deveria vir Arqueiro Implacável, veio Arqueiro iniciante, por que? Video 5.2 (Getter)
+
