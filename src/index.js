@@ -1,32 +1,31 @@
 /*
-AULA 3 - Herança, polimorfismos e composição
-3.1 - Extendendo classes
-3.2 - Sobrescrevendo métodos
-3.3 - Composição
-CONTEXTO: após o 3.2, pedir a construção da classe Arqueiro em um desafio
+AULA 4 - Static
+4.1 - Propriedades estáticas
 PROBLEMA
-- Como ter uma classe que tenha caracteristicas de mais de uma classe? Ex: um arqueiro que usa arco e flecha mas com o elemento mágico fogo
+- Como lidar com propriedades que possuem dados que não dependendem do contexto do this?
 SOLUÇÃO
-- instancia a partir da classe Mago
-- instancia a partir da classe Arqueiro
-- modificar a propriedade do combate do arqueiro mágico, unindo informações de Mago e Arqueiro
+- Adicionar a sintaxe static para as propriedades com dados imútaveis e removê-las do constructor
+- Substituição do this pelo nome da classe
+- Uso do this.constructor
+
 TEORIA
-- explicar composição
+- Como definir uma propriedade estatica
+- Como ela pode e como não pode ser chamada
+- Explicar como ela não depende do contexto do this e explicar que ela é estática, mas não protegida
+- Quando utilizar
 */
 
-import { ArqueiroMago } from "./modules/arqueiro-mago.js"
+import {
+    Arqueiro
+} from "./modules/arqueiro.js"
 
-//Valor esperado: Arqueiro iniciante e Mago iniciante
-console.log(new ArqueiroMago('Joaguim', 4, 4, 'fogo', 4, 4).obterInsignia())
+// Como acessar variável estática
+console.log(Arqueiro.tipo)
+// Ou:
+console.log(new Arqueiro().constructor.tipo)
 
-//Valor esperado: Implacavel Arqueiro e Implacavel Mago
-console.log(new ArqueiroMago('Joaguim', 10, 4, 'fogo', 4, 10).obterInsignia())
+// Antes de acrescentar this.constructor.tipo . Valor esperado: undefined iniciante
+console.log(new Arqueiro().obterInsignia())
 
-//Valor esperado: Implacavel Arqueiro e Mestre do fogo
-console.log(new ArqueiroMago('Joaguim', 10, 4, 'fogo', 5, 10).obterInsignia())
-
-//Valor esperado: Dominador de flechas e Implacavel Mago
-console.log(new ArqueiroMago('Joaguim', 10, 6, 'fogo', 4, 10).obterInsignia())
-
-//Valor esperado: Dominador de flechas e Mestre do fogo
-console.log(new ArqueiroMago('Joaguim', 10, 6, 'fogo', 5, 10).obterInsignia())
+// Depois de acrescentar this.constructor.tipo . Valor esperado: Arqueiro iniciante
+console.log(new Arqueiro().obterInsignia())

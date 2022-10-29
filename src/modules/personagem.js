@@ -1,23 +1,24 @@
 export class Personagem {
+    static tipo
+    static descricao
+
     nome
     level
-    tipo
     // Nao preenchidas por parametro do constructor
     vida
     mana
 
-    constructor(nome, level, tipo) {
+    constructor(nome, level) {
         this.nome = nome
         this.level = level
-        this.tipo = tipo
         this.vida = 100
         this.mana = 100
     }
 
     obterInsignia() {
         if (this.level >= 5) {
-            return `Implacavel ${ this.tipo }`
+            return `Implacavel ${ this.constructor.tipo }`
         }
-        return `${ this.tipo } iniciante`
+        return `${ this.constructor.tipo } iniciante`
     }
 }
