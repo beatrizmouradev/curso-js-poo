@@ -1,31 +1,23 @@
 /*
 AULA 4 - Static
 4.1 - Propriedades estáticas
+4.2 - Métodos estáticos
 PROBLEMA
-- Como lidar com propriedades que possuem dados que não dependendem do contexto do this?
+- Como lidar com métodos que recebem dados que não dependendem do contexto do this?
 SOLUÇÃO
-- Adicionar a sintaxe static para as propriedades com dados imútaveis e removê-las do constructor
-- Substituição do this pelo nome da classe
-- Uso do this.constructor
-
+- Criar um método estático na classe Personagem
+- Utilizar esse método em uma subclasse para um outro contexto
 TEORIA
-- Como definir uma propriedade estatica
-- Como ela pode e como não pode ser chamada
-- Explicar como ela não depende do contexto do this e explicar que ela é estática, mas não protegida
+- Como definir uma método estatico
+- O que são metodos utilitarios
+- Como ela pode e como não pode ser chamada no console
 - Quando utilizar
 */
 
-import {
-    Arqueiro
-} from "./modules/arqueiro.js"
+import { Personagem } from "./modules/personagem.js"
+import { Mago } from "./modules/mago.js"
 
-// Como acessar variável estática
-console.log(Arqueiro.tipo)
-// Ou:
-console.log(new Arqueiro().constructor.tipo)
+const magoJack = new Mago('Jack', 10, 'fogo', 10, 10)
+const magoPotter = new Mago('Potter', 9, 'fogo', 9, 4)
 
-// Antes de acrescentar this.constructor.tipo . Valor esperado: undefined iniciante
-console.log(new Arqueiro().obterInsignia())
-
-// Depois de acrescentar this.constructor.tipo . Valor esperado: Arqueiro iniciante
-console.log(new Arqueiro().obterInsignia())
+console.log(Personagem.verificarVencedor(magoJack, magoPotter))
