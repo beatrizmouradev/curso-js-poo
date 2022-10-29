@@ -1,16 +1,16 @@
 /*
 AULA 2 - CONSTRUCTOR
-2.1 - Construindo por parâmetro
+2.1 - Construtor por parâmetro
+
+2.2 - Propriedades fora dos parâmetros
 PROBLEMA
-- Por mais que já exista um modelo, ainda está sendo necessário instanciar o objeto e passar os valores 1 a 1 das propriedades toda vez
+- E quando existem valores de determinadas propriedades que eu quero já definir no construtor e não pedir por parâmetro na hora de instanciar a classe?
 SOLUÇÃO
-- adicionar constructor na classe
-- aplicar o this
-- adicionar algumas variáveis no parâmetro
+- aplico o this nas propriedades que não são pedidas por parâmetro
+- atribuo um valor
+- verifico novamente o objeto no console
 TEORIA
-- O que é um constructor
-- Como o constructor agiliza o trabalho na hora de criar as instâncias
-- Construtor por parâmetro
+- Construtor sem parâmetro
 */
 
 import { Personagem } from "./modules/personagem.js"
