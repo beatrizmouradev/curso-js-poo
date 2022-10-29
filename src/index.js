@@ -1,42 +1,28 @@
 /*
-AULA 1 - CLASSES
-1.1 - apresentação
-1.2 - mostrar projeto base
-1.3 - Quando Classes são necessárias?
-
-1.4 - This
+AULA 2 - CONSTRUCTOR
+2.1 - Construindo por parâmetro
 PROBLEMA
-- Evoluir o modelo de classe com outras propriedades e métodos
+- Por mais que já exista um modelo, ainda está sendo necessário instanciar o objeto e passar os valores 1 a 1 das propriedades toda vez
 SOLUÇÃO
-- Criar um arquivo só para a declaração da classe e outro para instanciar e manipular essa instância
-- Adicionar o restante das propriedades
-- Acrescentar um método
-- criar mais uma instância
+- adicionar constructor na classe
+- aplicar o this
+- adicionar algumas variáveis no parâmetro
 TEORIA
-- Padrão na divisão dos arquivos
-- Import e export
-- this
+- O que é um constructor
+- Como o constructor agiliza o trabalho na hora de criar as instâncias
+- Construtor por parâmetro
 */
 
 import { Personagem } from "./modules/personagem.js"
 
-const personagemJack = new Personagem()
-personagemJack.nome = 'Jack'
-personagemJack.level = 4
-personagemJack.tipo = 'Guerreiro'
+const personagemJack = new Personagem('Jack', 8, 'Mago')
+
+const personagemJhey = new Personagem('Jhey', 4, 'Arqueiro')
+
+const personagemLess = new Personagem('Less', 3, 'Guerreiro')
 
 console.log(personagemJack)
 
-//explicar aplicação do this no contexto do pesonagemJack
-console.log('Insignia de ' + personagemJack.nome + ': ' + personagemJack.obterInsignia())
+console.log(personagemJhey)
 
-const personagemJhey = new Personagem()
-
-personagemJhey.nome = 'Jhey'
-personagemJhey.level = 6
-personagemJhey.tipo = 'Mago'
-
-//mostrar novo contexto do this só que agora dentro de personagemJhey
-console.log('Insignia de ' + personagemJhey.nome + ': ' + personagemJhey.obterInsignia())
-
-
+console.log(personagemLess)
